@@ -1,6 +1,7 @@
-import { name } from "./package.json";
+import type { Plugin } from "vite";
+import { name } from "../package.json";
 
-function remainExports() {
+function remainExports(): Plugin {
   return {
     name,
     enforce: "post",
@@ -12,7 +13,7 @@ function remainExports() {
       };
     },
     transform(code, id) {
-      if (id.endsWith("html") && this.getModuleInfo(id).isEntry) {
+      if (id.endsWith("html") && this.getModuleInfo(id)?.isEntry) {
         return code.replace(/import/g, "export * from");
       }
       return null;

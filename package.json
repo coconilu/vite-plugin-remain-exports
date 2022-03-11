@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "vite plugin that remain exports from html-entry-script",
   "main": "index.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,5 +24,10 @@
   "bugs": {
     "url": "https://github.com/coconilu/vite-plugin-remain-exports/issues"
   },
-  "homepage": "https://github.com/coconilu/vite-plugin-remain-exports#readme"
+  "homepage": "https://github.com/coconilu/vite-plugin-remain-exports#readme",
+  "devDependencies": {
+    "tsup": "^5.12.1",
+    "typescript": "^4.6.2",
+    "vite": "^2.8.6"
+  }
 }
