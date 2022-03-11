@@ -40,6 +40,7 @@ jobs:
           node-version: '16.x'
           always-auth: true
           registry-url: 'https://npm.pkg.github.com'
+      - run: cat .npmrc
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
