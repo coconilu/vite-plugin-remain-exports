@@ -1,0 +1,24 @@
+{
+  "name": "vite-plugin-remain-exports",
+  "version": "1.0.0",
+  "description": "vite plugin that remain exports from html-entry-script",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coconilu/vite-plugin-remain-exports.git"
+  },
+  "keywords": [
+    "vite-plugin",
+    "remain",
+    "exports"
+  ],
+  "author": "bayeswang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coconilu/vite-plugin-remain-exports/issues"
+  },
+  "homepage": "https://github.com/coconilu/vite-plugin-remain-exports#readme"
+}
