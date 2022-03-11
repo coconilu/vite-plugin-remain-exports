@@ -20,7 +20,7 @@ jobs:
   #     - run: npm build
 
   publish-npm:
-    needs: build
+    # needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
