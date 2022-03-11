@@ -2,7 +2,9 @@
   "name": "vite-plugin-remain-exports",
   "version": "1.1.0",
   "description": "vite plugin that remain exports from html-entry-script",
-  "main": "index.ts",
+  "module": "dist/index.mjs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
