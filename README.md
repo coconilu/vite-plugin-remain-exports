@@ -1,18 +1,18 @@
 # Vite-Plugin-Remain-Exports
 
-这个插件的主旨是为了在使用vite的过程，保留html的入口文件的导出内容。
+This plugin is aimed to remaining the exports from entry scripts that imported by entry HTML.
 
-## 使用场景
+## 1. Use case
 
-对于使用ESModule构建的微前端项目来说，这是很有必要的。
+It is important for those micro frond-end project builded with ES-Module style.
 
-一些框架，比如IceStark，会读取微前端模块的两个生命周期：mount和unmount。
+Some micro frond-end framework, like IceStark, need each micro modules export two life-cycle: mount and unmount.
 
-如果无法保留入口文件导出的这两个生命周期，业务将无法进行。
+If entry scripts can't export those two life-cycle, the micro module would't been rendered to page.
 
-## 使用方式
+## 2. Usage
 
-### 安装
+### 2.1 Install
 
 ```bash
 npm i -D vite-plugin-remain-exports
@@ -20,7 +20,7 @@ yarn add -D vite-plugin-remain-exports
 pnpm i -D vite-plugin-remain-exports
 ```
 
-### 使用插件
+### 2.2 Using plugin
 
 ```ts
 import remainExports from 'vite-plugin-remain-exports'
@@ -33,9 +33,10 @@ export default defineConfig({
   ],
 })
 ```
-## 详细说明
 
-如下，是一个vite项目，它的入口文件是一个html。
+## 3. Core Theory
+
+As follow, it is an entry html in vite project：
 
 ```HTML
 <!DOCTYPE html>
@@ -53,11 +54,11 @@ export default defineConfig({
 </html>
 ```
 
-而这个html的入口文件就是`/src/main.tsx`。
+And the entry scripts imported by entry html is `/src/main.tsx`.
 
-### vite处理html文件
+### 3.1 How entry html was handled by vite
 
-默认情况下，vite会把html文件转换成如下js代码：
+By default, vite will transfer the entry html to the following js code:
 
 ```javascript
 import "vite/modulepreload-polyfill";
@@ -65,11 +66,11 @@ import "vite/modulepreload-polyfill";
 import "/src/main.tsx";
 ```
 
-vite是基于rollup的，对于rollup项目而言，html是它的入口文件，在构建的时候，仅会保留这个入口文件的导出内容，而对它的所有依赖进行tree-shaking。
+The build process of vite is based on rollup. For the rollup project, entry html is the entry file. And in the build process, rollup will only remain the exports of entry file, then tree-shaking other depends.
 
-所以为了保留main.tsx文件的导出内容，我们需要一些魔法，这里我引用一个概念，**模块替身**。
+So for remaining the entry scripts (`main.tsx`) exports, we need some magic. Here leading in a concept -- module double.
 
-### 模块替身
+### 3.2 Module double
 
 ```typescript
 // index.ts
@@ -79,12 +80,11 @@ export * from 'another.ts'
 export const demo = 1;
 ```
 
-对于外界而言，index.ts 和 another.ts的功能是完全一样的。
+For importers, `index.ts` and `another.ts` is working the same.
 
+### 3.3 Plugin core
 
-### 插件核心
-
-介绍完vite是如何处理html文件的和模块替身概念后，我们可以对html的转换结果做一些修改，把它转换成如下：
+After introducing how entry html was handled by vite and the module double concept, we can modify the transfer result of entry html, as following:
 
 ```javascript
 export * from "vite/modulepreload-polyfill";
@@ -92,9 +92,4 @@ export * from "vite/modulepreload-polyfill";
 export * from "/src/main.tsx";
 ```
 
-这样一来，对于vite使用者来说，main.tsx就是入口文件，它的导出都可以得以保留。
-
-
-
-
-
+Thus, for vite user, the entry scripts （`main.tsx`）work as the entry file, and the exports of them will can be remained.
