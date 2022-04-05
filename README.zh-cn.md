@@ -1,3 +1,5 @@
+_简体中文_ | [_English_](README.md)
+
 # Vite-Plugin-Remain-Exports
 
 这个插件的主旨是为了在使用vite的过程，保留html的入口脚本文件的导出内容。
