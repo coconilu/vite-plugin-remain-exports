@@ -1,3 +1,5 @@
+[_简体中文_](README.zh-cn.md) | _English_
+
 # Vite-Plugin-Remain-Exports
 
 This plugin is aimed to remaining the exports from entry scripts that imported by entry HTML.
