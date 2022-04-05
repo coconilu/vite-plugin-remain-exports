@@ -1,7 +1,7 @@
-import type { Plugin } from "vite";
+import type { PluginOption } from "vite";
 import { name } from "../package.json";
 
-function remainExports(): Plugin {
+function remainExports(): PluginOption {
   return {
     name,
     enforce: "post",
